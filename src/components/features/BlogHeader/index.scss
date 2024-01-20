@@ -1,0 +1,15 @@
+.blog-header {
+  .info-box {
+    .hover-dark {
+      @apply hover:bg-neutral-950;
+    }
+
+    .hover-light {
+      @apply hover:bg-amber-50;
+    }
+
+    a {
+      @apply hover:underline;
+    }
+  }
+}

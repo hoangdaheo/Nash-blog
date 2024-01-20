@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Nash';
+  src:
+    local('squealer'),
+    url('./../assets/fonts/squealer.ttf') format('truetype');
+}
+
+.logo {
+  font-family: 'Nash';
+}
+
+body {
+  @apply bg-amber-50;
+
+  &.dark-mode {
+    @apply bg-neutral-950;
+  }
+}
