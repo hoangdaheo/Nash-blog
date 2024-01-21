@@ -19,4 +19,12 @@ body {
   &.dark-mode {
     @apply bg-neutral-950;
   }
+
+  .dark-mode {
+    @apply bg-neutral-950;
+  }
+
+  .light-mode {
+    @apply bg-amber-50;
+  }
 }

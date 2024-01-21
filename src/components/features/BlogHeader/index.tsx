@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { RiMenu4Line } from 'react-icons/ri';
 import Section from './Section';
@@ -9,6 +9,13 @@ const BlogHeader = () => {
   const [isDarkMode, setDarkMode] = useState<boolean>(
     localStorage?.getItem('isDarkMode') === 'true'
   );
+  const menuBtnColorBehavior = showTool
+    ? isDarkMode
+      ? 'light-mode'
+      : 'dark-mode'
+    : isDarkMode
+      ? 'dark-mode'
+      : 'light-mode';
   const handleShowCmsTool = useCallback(() => {
     setShowTool(!showTool);
   }, [showTool]);
@@ -18,7 +25,7 @@ const BlogHeader = () => {
     setDarkMode(!isDarkMode);
   }, [isDarkMode]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const body: HTMLElement = document?.body;
     if (isDarkMode) {
       body.classList.add('dark-mode');
@@ -41,7 +48,7 @@ const BlogHeader = () => {
         <div className='md:relative info-box flex gap-4 items-center'>
           <Section />
           <div
-            className={`w-10 flex justify-center cursor-pointer border-2 rounded-2xl border-solid p-2 ${isDarkMode ? 'hover-light' : 'hover-dark'}`}
+            className={`w-10 flex justify-center cursor-pointer border-2 rounded-2xl border-solid p-2 ${isDarkMode ? 'light-mode' : 'dark-mode'}`}
             onClick={handleToggleTheme}
           >
             {isDarkMode ? <FaSun /> : <FaMoon />}
@@ -49,7 +56,7 @@ const BlogHeader = () => {
           <div>
             <button
               onClick={handleShowCmsTool}
-              className={`border-2 rounded-2xl border-solid p-2 ${isDarkMode ? 'hover-light' : 'hover-dark'}`}
+              className={`border-2 rounded-2xl border-solid p-2 ${menuBtnColorBehavior}`}
             >
               <RiMenu4Line />
             </button>
