@@ -6,12 +6,15 @@ import './index.scss';
 
 const BlogHeader = () => {
   const [showTool, setShowTool] = useState<boolean>(false);
-  const [isDarkMode, setDarkMode] = useState<boolean>(false);
+  const [isDarkMode, setDarkMode] = useState<boolean>(
+    localStorage?.getItem('isDarkMode') === 'true'
+  );
   const handleShowCmsTool = useCallback(() => {
     setShowTool(!showTool);
   }, [showTool]);
 
   const handleToggleTheme = useCallback(() => {
+    localStorage?.setItem('isDarkMode', `${!isDarkMode}`);
     setDarkMode(!isDarkMode);
   }, [isDarkMode]);
 
@@ -27,8 +30,8 @@ const BlogHeader = () => {
   return (
     <div className='blog-header fixed w-full'>
       <div
-        className='relative flex flex-row max-w-5xl items-center justify-between justify-items-end p-4 pb-2 
-        m-auto gap-7 font-medium text-xl'
+        className={`relative flex flex-row max-w-5xl items-center justify-between justify-items-end p-4 pb-2 
+        m-auto gap-7 font-medium text-xl opacity-95 ${isDarkMode ? ' dark-mode' : ' light-mode'}`}
       >
         <div className='home-box'>
           <a className='logo text-4xl' href='#'>
@@ -52,7 +55,10 @@ const BlogHeader = () => {
             </button>
           </div>
           {showTool && (
-            <div className='menu-box absolute flex flex-col top-full right-0 w-full md:w-52 mt-8 p-4 border-2 rounded-2xl'>
+            <div
+              className={`menu-box absolute flex flex-col top-full right-0
+               w-full md:w-52 mt-8 p-4 border-2 rounded-2xl opacity-95 ${isDarkMode ? ' dark-mode' : 'light-mode'}`}
+            >
               <div>
                 <a>Log in</a>
               </div>
@@ -65,7 +71,7 @@ const BlogHeader = () => {
           )}
         </div>
       </div>
-      <div className='blog-header-bottom-line m-auto border-b-2 border-b-cyan-600 max-w-5xl h-1 block'></div>
+      <div className='blog-header-bottom-line m-auto border-b-2 border-b-cyan-600 max-w-5xl h-0 block'></div>
     </div>
   );
 };
