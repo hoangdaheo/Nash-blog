@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { RiMenu4Line } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 import Section from './Section';
 import './index.scss';
 
@@ -85,9 +86,9 @@ const BlogHeader: React.FC<IProps> = ({ blogRef }) => {
 				 opacity-95 ${isDarkMode ? ' dark-mode' : ' light-mode'}`}
       >
         <div className='home-box'>
-          <a className='logo text-4xl' href='#'>
-            Na*h
-          </a>
+          <div className='logo text-4xl hover:text-red-300'>
+            <Link to={'/'}>Na*h</Link>
+          </div>
         </div>
         <div className='md:relative info-box flex gap-4 items-center'>
           <div className='block overflow-hidden'>
