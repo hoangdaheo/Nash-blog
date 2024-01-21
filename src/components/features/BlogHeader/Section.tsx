@@ -7,7 +7,9 @@ interface IProps {
 
 const Section: React.FC<IProps> = ({ isInsideMenu }) => {
   return (
-    <div className={!isInsideMenu ? 'hidden md:flex gap-4 items-center' : ''}>
+    <div
+      className={`section-box ${!isInsideMenu ? 'hidden md:flex gap-4 items-center' : ''}`}
+    >
       <div>
         <a href='#'>Blogs</a>
       </div>

@@ -4,4 +4,27 @@
       @apply hover:underline;
     }
   }
+
+  .scroll-up {
+    .home-box {
+      .logo {
+        @apply transition-all ease-in-out duration-500 md:text-6xl;
+      }
+    }
+
+    .section-box {
+      @apply transition-all ease-in-out duration-500 md:translate-x-0;
+    }
+  }
+
+  .scroll-down {
+    .home-box {
+      .logo {
+        @apply transition-all ease-in-out duration-500 md:text-4xl;
+      }
+    }
+    .section-box {
+      @apply transition-all ease-in-out duration-500 md:translate-x-64;
+    }
+  }
 }

@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import BlogHeader from '../../features/BlogHeader';
 import BlogContent from '../../features/BlogContent';
 
 const CenterBlog: React.FC<unknown> = () => {
+  const blogRef = useRef<HTMLDivElement | null>(null);
+
   return (
     <>
-      <div className='text-slate-400 font-mono'>
+      <div
+        ref={blogRef}
+        className='font-mono transition-all ease-in-out duration-500'
+      >
         <header id='blog-bar' className='block'>
-          <BlogHeader />
+          <BlogHeader blogRef={blogRef} />
         </header>
-        <section id='main' className='max-w-4xl m-auto block relative -z-10'>
+        <section id='main' className='max-w-4xl m-auto block'>
           <BlogContent />
         </section>
         <section

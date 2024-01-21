@@ -14,10 +14,12 @@
 }
 
 body {
-  @apply bg-amber-50;
-
   &.dark-mode {
-    @apply bg-neutral-950;
+    @apply bg-neutral-950 text-slate-400;
+  }
+
+  &.light-mode {
+    @apply bg-amber-50 text-slate-500;
   }
 
   .dark-mode {
