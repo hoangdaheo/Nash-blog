@@ -9,11 +9,7 @@ const CenterBlog: React.FC<unknown> = () => {
         <header id='blog-bar' className='block'>
           <BlogHeader />
         </header>
-        <section
-          id='main'
-          style={{ height: '4000px' }}
-          className='w-full block'
-        >
+        <section id='main' className='max-w-4xl m-auto block relative -z-10'>
           <BlogContent />
         </section>
         <section

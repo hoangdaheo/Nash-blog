@@ -1,7 +1,7 @@
 import './topCover.scss';
 const TopCover = () => {
   return (
-    <div className='relative h-64 top-cover-box'>
+    <div className='relative h-96 top-cover-box'>
       <div className='wrapper'>
         <div className='candles'>
           <div className='light__wave'></div>

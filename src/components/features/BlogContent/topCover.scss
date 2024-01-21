@@ -20,10 +20,6 @@ $candleHeight: 100px;
 $stickWidth: 3px;
 $stickHeight: 15px;
 
-.top-cover-box {
-  background-color: $lightsOnBg;
-  animation: change-background 3s infinite linear;
-}
 .wrapper {
   position: absolute;
   left: 50%;
@@ -293,18 +289,6 @@ $stickHeight: 15px;
   }
 }
 
-@keyframes change-background {
-  0%,
-  59%,
-  98%,
-  100% {
-    background: $lightsOnBg;
-  }
-  61%,
-  97% {
-    background: $lightsOutBg;
-  }
-}
 @keyframes move-left {
   0%,
   59%,

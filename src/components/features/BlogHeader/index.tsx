@@ -27,12 +27,12 @@ const BlogHeader = () => {
   return (
     <div className='blog-header fixed w-full'>
       <div
-        className='relative flex flex-row w-8/12 items-center justify-between justify-items-end p-4 pb-2 
+        className='relative flex flex-row max-w-5xl items-center justify-between justify-items-end p-4 pb-2 
         m-auto gap-7 font-medium text-xl'
       >
         <div className='home-box'>
           <a className='logo text-4xl' href='#'>
-            Gi*en
+            Nash
           </a>
         </div>
         <div className='md:relative info-box flex gap-4 items-center'>
@@ -65,7 +65,7 @@ const BlogHeader = () => {
           )}
         </div>
       </div>
-      <div className='blog-header-bottom-line m-auto border-b-2 border-b-cyan-600 w-8/12 h-1 block'></div>
+      <div className='blog-header-bottom-line m-auto border-b-2 border-b-cyan-600 max-w-5xl h-1 block'></div>
     </div>
   );
 };
