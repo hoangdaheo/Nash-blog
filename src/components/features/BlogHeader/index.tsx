@@ -5,8 +5,8 @@ import React, {
   useRef,
   useState
 } from 'react';
-import { FaSun, FaMoon } from 'react-icons/fa';
-import { RiMenu4Line } from 'react-icons/ri';
+// import { FaSun, FaMoon } from 'react-icons/fa';
+// import { RiMenu4Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import Section from './Section';
 import './index.scss';
@@ -81,7 +81,7 @@ const BlogHeader: React.FC<IProps> = ({ blogRef }) => {
   return (
     <div className='blog-header fixed w-full z-10'>
       <div
-        className={`relative flex flex-row max-w-5xl items-center justify-between justify-items-end p-4 pb-2 
+        className={`transition-all duration-500 ease-in-out relative flex flex-row max-w-5xl items-center justify-between justify-items-end p-4 pb-2 
 				m-auto gap-7 font-medium text-xl scroll-${currentScroll || 'up'}
 				 opacity-95 ${isDarkMode ? ' dark-mode' : ' light-mode'}`}
       >
@@ -98,14 +98,14 @@ const BlogHeader: React.FC<IProps> = ({ blogRef }) => {
             className={`transition-all duration-500 w-10 flex justify-center cursor-pointer border-2 rounded-2xl border-solid p-2 ${isDarkMode ? 'light-mode' : 'dark-mode'}`}
             onClick={handleToggleTheme}
           >
-            {isDarkMode ? <FaSun /> : <FaMoon />}
+            {/* {isDarkMode ? <FaSun /> : <FaMoon />} */}
           </div>
           <div>
             <button
               onClick={handleShowCmsTool}
               className={`transition-all duration-500 border-2 rounded-2xl border-solid p-2 ${menuBtnColorBehavior}`}
             >
-              <RiMenu4Line />
+              {/* <RiMenu4Line /> */}
             </button>
           </div>
           <div
@@ -119,8 +119,12 @@ const BlogHeader: React.FC<IProps> = ({ blogRef }) => {
             <div className='md:hidden'>
               <Section isInsideMenu={true} />
             </div>
-            <div>Content management</div>
-            <div>Settings</div>
+            <div>
+              <Link to={'cms/'}>Content management</Link>
+            </div>
+            <div>
+              <Link to={'setting/'}>Settings</Link>
+            </div>
           </div>
         </div>
       </div>
