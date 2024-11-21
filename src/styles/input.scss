@@ -2,31 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Nash';
-  src:
-    local('squealer'),
-    url('./../assets/fonts/squealer.ttf') format('truetype');
-}
-
 .logo {
-  font-family: 'Nash';
+  font-family: sans-serif;
 }
 
 body {
-  &.dark-mode {
-    @apply bg-neutral-950 text-slate-400;
-  }
-
-  &.light-mode {
-    @apply bg-amber-50 text-slate-500;
-  }
-
-  .dark-mode {
-    @apply bg-neutral-950;
-  }
-
-  .light-mode {
-    @apply bg-amber-50;
-  }
+  @apply bg-amber-50 text-slate-500 dark:bg-neutral-950 dark:text-slate-400;
 }

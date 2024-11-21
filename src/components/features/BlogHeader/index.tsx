@@ -1,12 +1,7 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState
-} from 'react';
-// import { FaSun, FaMoon } from 'react-icons/fa';
-// import { RiMenu4Line } from 'react-icons/ri';
+import React, { useEffect, useRef, useState } from 'react';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import Section from './Section';
 import './index.scss';
@@ -15,35 +10,22 @@ interface IProps {
   blogRef: React.MutableRefObject<HTMLDivElement | null>;
 }
 
-const BlogHeader: React.FC<IProps> = ({ blogRef }) => {
+const BlogHeader: React.FC<IProps> = () => {
   const [showTool, setShowTool] = useState<boolean>(false);
-  const [isDarkMode, setDarkMode] = useState<boolean>(
-    localStorage?.getItem('isDarkMode') === 'true'
-  );
+  const [isDarkMode, setDarkMode] = useState<boolean>(false);
   const prevScroll = useRef<number>(0);
   const [currentScroll, setCurrentScroll] = useState<'up' | 'down' | null>(
     null
   );
-  // need opt
-  const menuBtnColorBehavior = showTool
-    ? isDarkMode
-      ? 'light-mode'
-      : 'dark-mode'
-    : isDarkMode
-      ? 'dark-mode'
-      : 'light-mode';
-  const handleShowCmsTool = useCallback(() => {
+
+  const handleShowCmsTool = () => {
     setShowTool(!showTool);
-  }, [showTool]);
+  };
 
-  const handleToggleTheme = useCallback(() => {
-    localStorage?.setItem('isDarkMode', `${!isDarkMode}`);
-    setDarkMode(!isDarkMode);
-  }, [isDarkMode]);
-
-  const handleScroll = useCallback(() => {
-    if (window?.scrollY === 0 && prevScroll?.current === 0) {
+  const handleScroll = () => {
+    if (window?.scrollY <= 60 && prevScroll?.current <= 0) {
       setCurrentScroll(null);
+      return;
     }
 
     if (window?.scrollY > prevScroll?.current) {
@@ -53,7 +35,7 @@ const BlogHeader: React.FC<IProps> = ({ blogRef }) => {
       prevScroll.current = window?.scrollY;
       setCurrentScroll('up');
     }
-  }, [prevScroll, currentScroll]);
+  };
 
   useEffect(() => {
     window?.addEventListener('scroll', handleScroll);
@@ -63,31 +45,42 @@ const BlogHeader: React.FC<IProps> = ({ blogRef }) => {
     };
   }, []);
 
-  useLayoutEffect(() => {
-    const body: HTMLElement = document?.body;
-    if (isDarkMode) {
-      blogRef?.current?.classList?.add('dark-mode');
-      blogRef?.current?.classList?.remove('light-mode');
-      body.classList.add('dark-mode');
-      body.classList.remove('light-mode');
+  const toggleDarkMode = () => {
+    setDarkMode(!isDarkMode);
+    if (!isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
-      blogRef?.current?.classList?.remove('dark-mode');
-      blogRef?.current?.classList?.add('light-mode');
-      body.classList.add('light-mode');
-      body.classList.remove('dark-mode');
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
-  }, [isDarkMode]);
+  };
+
+  useEffect(() => {
+    // On component mount, check localStorage for a saved theme preference
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      setDarkMode(true);
+      document.documentElement.classList.add('dark');
+    } else {
+      setDarkMode(false);
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
 
   return (
-    <div className='blog-header fixed w-full z-10'>
+    <div className='blog-header fixed w-full z-10 bg-amber-50 dark:bg-neutral-950 opacity-100 z-50'>
       <div
-        className={`transition-all duration-500 ease-in-out relative flex flex-row max-w-5xl items-center justify-between justify-items-end p-4 pb-2 
-				m-auto gap-7 font-medium text-xl scroll-${currentScroll || 'up'}
-				 opacity-95 ${isDarkMode ? ' dark-mode' : ' light-mode'}`}
+        className={`relative transition-all duration-500 flex flex-row max-w-5xl items-center justify-between justify-items-end p-4 pb-2 
+				m-auto gap-7 font-medium text-xl scroll-${currentScroll || 'up'} bg-amber-50 dark:bg-neutral-950
+				 opacity-80`}
       >
         <div className='home-box'>
           <div className='logo text-4xl hover:text-red-300'>
-            <Link to={'/'}>Na*h</Link>
+            <Link to={'/'}>three-F</Link>
           </div>
         </div>
         <div className='md:relative info-box flex gap-4 items-center'>
@@ -95,23 +88,23 @@ const BlogHeader: React.FC<IProps> = ({ blogRef }) => {
             <Section />
           </div>
           <div
-            className={`transition-all duration-500 w-10 flex justify-center cursor-pointer border-2 rounded-2xl border-solid p-2 ${isDarkMode ? 'light-mode' : 'dark-mode'}`}
-            onClick={handleToggleTheme}
+            className='w-10 flex justify-center cursor-pointer border-2 rounded-2xl border-solid p-2 dark:bg-amber-50 bg-neutral-950'
+            onClick={toggleDarkMode}
           >
-            {/* {isDarkMode ? <FaSun /> : <FaMoon />} */}
+            {isDarkMode ? <DarkModeIcon /> : <LightModeIcon />}
           </div>
           <div>
             <button
               onClick={handleShowCmsTool}
-              className={`transition-all duration-500 border-2 rounded-2xl border-solid p-2 ${menuBtnColorBehavior}`}
+              className={`border-2 rounded-2xl border-solid p-2`}
             >
-              {/* <RiMenu4Line /> */}
+              <MenuIcon />
             </button>
           </div>
           <div
-            className={`transition-all duration-500 ease-in-out ${showTool ? ' cursor-pointer opacity-95' : ' opacity-0 pointer-events-none'}
+            className={`${showTool ? ' cursor-pointer opacity-95' : ' opacity-0 pointer-events-none'}
 						 menu-box absolute flex flex-col top-full right-0 
-						 w-full mt-4 md:w-52 md:mt-8 p-4 border-2 rounded-2xl  ${isDarkMode ? ' dark-mode' : 'light-mode'}`}
+						 w-full mt-4 md:w-52 md:mt-8 p-4 border-2 rounded-2xl  ${isDarkMode ? ' dark' : 'light-mode'}`}
           >
             <div>
               <a>Log in</a>

@@ -2,16 +2,19 @@ import TopCover from './TopCover';
 
 const Home = () => {
   return (
-    <div className='p-8 pt-24 flex flex-col'>
+    <div className='pt-24 flex flex-col'>
       <div className='block overflow-hidden'>
         <TopCover />
       </div>
-      <div className='w-full'>
-        <div className='flex flex-col items-start'>
+      <div className='w-full p-8 max-w-4xl mx-auto z-10'>
+        <div className='flex flex-col items-start -mt-24 border-cyan-600 border-2 bg-slate-900 rounded-3xl shadow-2xl shadow-black p-8'>
           <h1 className='logo text-4xl md:text-6xl box-border py-4 leading-10 block font-semibold'>
-            Hoang Nguyen
+            What is three-F?
           </h1>
-          <div className='mt-2'>Software Engineer</div>
+          <div className='mt-2'>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
+            dignissimos cum iure.
+          </div>
           <p className='mt-4'>
             <span className=' text-3xl'>Hello there!</span> Nice to meet you.
             Contrary to popular belief, Lorem Ipsum is not simply random text.
@@ -29,6 +32,22 @@ const Home = () => {
             Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section
             1.10.32.
           </p>
+        </div>
+        <div className='flex flex-col'>
+          <div className='headline text-center mt-10 text-3xl font-semibold'>
+            How does it work?
+          </div>
+          <div className='mt-8 flex flex-rol gap-8'>
+            <div className='w-80 p-4 h-80 block relative box-border border-2 border-cyan-600'>
+              Featured 1
+            </div>
+            <div className='w-80 p-4 h-80 block relative box-border border-2 border-cyan-600'>
+              Featured 2
+            </div>
+            <div className='w-80 p-4 h-80 block relative box-border border-2 border-cyan-600'>
+              Featured 3
+            </div>
+          </div>
         </div>
       </div>
     </div>

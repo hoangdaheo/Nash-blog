@@ -9,10 +9,7 @@ const ErrorPage = () => {
 
   return (
     <>
-      <div
-        ref={blogRef}
-        className='font-mono transition-all ease-in-out duration-500'
-      >
+      <div ref={blogRef} className='font-mono'>
         <header id='blog-bar' className='block'>
           <BlogHeader blogRef={blogRef} />
         </header>

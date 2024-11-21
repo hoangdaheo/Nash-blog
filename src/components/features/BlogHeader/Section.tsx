@@ -1,5 +1,5 @@
 import React from 'react';
-// import { IoLogoGithub } from 'react-icons/io5';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link } from 'react-router-dom';
 
 interface IProps {
@@ -18,7 +18,7 @@ const Section: React.FC<IProps> = ({ isInsideMenu }) => {
         <Link to={'about/'}>About</Link>
       </div>
       <div className='flex flex-row gap-1 items-center'>
-        {/* <IoLogoGithub /> */}
+        <GitHubIcon />
         <a href='https://github.com/hoangdaheo'>Source</a>
       </div>
     </div>
